@@ -1,0 +1,14 @@
+{
+  "name": "puppeteer-template",
+  "version": "1.0.0",
+  "description": "Puppeteer template.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": "https://github.com/AlfieriChou/puppeteer-template",
+  "author": "AlfieriChou <alfierichou@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^1.13.0"
+  }
+}
