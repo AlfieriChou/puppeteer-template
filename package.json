@@ -9,6 +9,6 @@
   "author": "AlfieriChou <alfierichou@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "1.13.0"
+    "puppeteer": "1.14.0"
   }
 }
