@@ -12,7 +12,7 @@ const bootstrap = async () => {
     await page.goto('https://mp.weixin.qq.com/', { waitUntil: 'networkidle2' })
     await page.evaluate(() => {
       const img = document.querySelector('.banner .qrcode_panel dt img')
-      return img.src
+      console.log('----->', img.src)
     })
     const cookies = await page.cookies()
     console.log('------>', cookies)
