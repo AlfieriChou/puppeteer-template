@@ -13,7 +13,15 @@ const bootstrap = async () => {
   await page.goto('https://www.google.com')
   await page.type('input.gLFyf.gsfi', 'nyan cat pullover')
   await page.keyboard.press('Enter')
-  await page.waitForNavigation({ waitUntil: 'load' })
+  await page.on('response', response => {
+    const status = response.status()
+    if ((status >= 300) && (status <= 399)) {
+      console.log('[Redirect from]: ', response.url(), 'to', response.headers()['location'])
+    }
+  })
+  await page.waitForNavigation(['networkidle0', 'load', 'domcontentloaded']);
+  const cookie = await page.cookies()
+  console.log('----->', cookie)
   await page.screenshot({ path: screenshot })
   console.log('See screenshot: ' + screenshot)
   await page.close()

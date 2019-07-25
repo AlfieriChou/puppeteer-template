@@ -64,4 +64,4 @@ typings/
 build
 
 # img
-img/*
+img/*.png
