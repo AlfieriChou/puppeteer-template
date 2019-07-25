@@ -15,18 +15,6 @@ const bootstrap = async () => {
       return img.src
     })
     console.log('---->', imgSrc)
-    const cookies = await page.cookies()
-    console.log('------>', cookies)
-    const userField = await page.$('input[name=account]')
-    await userField.click()
-    await userField.type('xxxxxxx')
-    await userField.dispose()
-    const passwordField = await page.$('input[name=password]')
-    await passwordField.click()
-    await passwordField.type('xxxx')
-    await passwordField.dispose()
-    await page.keyboard.press('Enter')
-    await page.waitForNavigation({ waitUntil: 'load' })
     await page.close()
     await browser.close()
   } catch (err) {
