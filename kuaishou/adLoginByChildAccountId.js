@@ -22,8 +22,8 @@ const bootstrap = async (accountId) => {
     )
     await page.$$eval(
       '#app > div > div.body-wrap > div > div.search > span > span > span > button',
-      anchors => {
-        anchors.reduce(async (promise, anchor) => {
+      async anchors => {
+        await anchors.reduce(async (promise, anchor) => {
           await promise
           if (anchor.textContent == '搜 索') {
             await anchor.click()
@@ -33,8 +33,8 @@ const bootstrap = async (accountId) => {
     )
     await page.$$eval(
       '#app > div > div.body-wrap > div > div.uc-table > div > div > div > div > div > div > table > tbody > tr > td:nth-child(4) > a',
-      anchors => {
-        anchors.reduce(async (promise, anchor) => {
+      async anchors => {
+        await anchors.reduce(async (promise, anchor) => {
           await promise
           if (anchor.textContent == '进入') {
             await anchor.click()
