@@ -47,38 +47,17 @@ const bootstrap = async () => {
       'https://uc.e.kuaishou.com/?sid=kuaishou.ad.dsp&followUrl=https%3A%2F%2Fad.e.kuaishou.com%2Findex#/index',
       // { waitUntil: 'networkidle2' }
     )
-    const accounts = (await getAccounts(page))
+    const accounts = (await getAccounts(page)).filter(account => account.accountName === '技术测试1')
     let index = 0
     while (index < accounts.length) {
       const { accountId } = accounts[index]
-      await page.type(
-        '#app > div > div.body-wrap > div > div.search > span > span > input',
-        `${accountId}`
+      await page.goto(
+        `https://ad.e.kuaishou.com/index?__accountId__=${accountId}&refreshToken=false`,
+        { waitUntil: 'networkidle2' }
       )
-      await page.$$eval(
-        '#app > div > div.body-wrap > div > div.search > span > span > span > button',
-        async anchors => {
-          await anchors.reduce(async (promise, anchor) => {
-            await promise
-            if (anchor.textContent == '搜 索') {
-              await anchor.click()
-            }
-          }, Promise.resolve())
-        }
-      )
-      await page.$$eval(
-        '#app > div > div.body-wrap > div > div.uc-table > div > div > div > div > div > div > table > tbody > tr > td:nth-child(4) > a',
-        async anchors => {
-          await anchors.reduce(async (promise, anchor) => {
-            await promise
-            if (anchor.textContent == '进入') {
-              await anchor.click()
-            }
-          }, Promise.resolve())
-        }
-      )
-      const cookies = await getCookies(page)
-      console.log(`----${index}--->`, JSON.stringify(cookies))
+      const cookies = await page.cookies()
+      console.log('------>', JSON.stringify(cookies, null, 2))
+      console.log(`----${index}--->`, JSON.stringify(cookies.filter(({ domain }) => !['id.kuaishou.com', 'uc.e.kuaishou.com'].includes(domain))))
       await page.goto(
         'https://uc.e.kuaishou.com/?sid=kuaishou.ad.dsp&followUrl=https%3A%2F%2Fad.e.kuaishou.com%2Findex#/index',
         { waitUntil: 'networkidle2' }
