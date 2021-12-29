@@ -1,7 +1,6 @@
 const puppeteer = require('puppeteer')
-const { cookies, FEEDBACK_URL } = require('./wxCookies')
+const { cookies, FEEDBACK_URL, wechatAccountId } = require('./config')
 
-const wechatAccountId = 'wx23bd7aa316995734'
 const logger = console
 const randomTime = 200 + parseInt(100 * Math.random(), 10)
 const defaultConvertName = '技术测试2'
